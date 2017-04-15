@@ -1,0 +1,86 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   21.21.13.7878
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.027 seconds
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 5760x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.951185 ms
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 38bc -> priority: 1 
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   21.21.13.7878
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.025 seconds
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 5760x1080 at -1920,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.329027 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: d1c -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.363054 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 334.
+Total: 0.194560 ms (FindLiveObjects: 0.010860 ms CreateObjectMapping: 0.013032 ms MarkObjects: 0.163219 ms  DeleteObjects: 0.007136 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.455835 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 334.
+Total: 0.437217 ms (FindLiveObjects: 0.065784 ms CreateObjectMapping: 0.041580 ms MarkObjects: 0.318681 ms  DeleteObjects: 0.010240 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.460179 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 336.
+Total: 0.327680 ms (FindLiveObjects: 0.020169 ms CreateObjectMapping: 0.026686 ms MarkObjects: 0.236761 ms  DeleteObjects: 0.042821 ms)
+
+UnloadTime: 0.464213 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 336.
+Total: 0.390981 ms (FindLiveObjects: 0.034443 ms CreateObjectMapping: 0.027306 ms MarkObjects: 0.244208 ms  DeleteObjects: 0.084402 ms)
+
