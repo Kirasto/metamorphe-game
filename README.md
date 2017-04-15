@@ -1,7 +1,7 @@
 # metamorphe-game
 Le jeu du métamorhpe
 
-###Version Alpha 0.1.0:
+### Version Alpha 0.1.0:
 ##  - Géneral:
 ```
  - Commencement du projet
