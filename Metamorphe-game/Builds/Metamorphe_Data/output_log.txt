@@ -5,7 +5,7 @@ Direct3D:
     Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
     Vendor:   NVIDIA
     VRAM:     3072 MB
-    Driver:   21.21.13.7878
+    Driver:   22.21.13.8233
 Begin MonoManager ReloadAssembly
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -19,68 +19,124 @@ Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamo
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.027 seconds
+Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\TextMeshPro.dll (this message is harmless)
+Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\TextMeshPro.dll into Unity Child Domain
+- Completed reload, in  0.037 seconds
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 5760x1080 at -1920,0
+desktop: 1920x1080 60Hz; virtual: 3600x1080 at -1920,-27
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.951185 ms
-Initialize engine version: 5.5.0f3 (38b4efef76f0)
-GfxDevice: creating device client; threaded=1
+UnloadTime: 1.248037 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 38bc -> priority: 1 
-Direct3D:
-    Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
-    Vendor:   NVIDIA
-    VRAM:     3072 MB
-    Driver:   21.21.13.7878
-Begin MonoManager ReloadAssembly
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-- Completed reload, in  0.025 seconds
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 5760x1080 at -1920,0
-<RI> Initializing input.
-<RI> Input initialized.
-<RI> Initialized touch support.
-UnloadTime: 1.329027 ms
-Setting up 1 worker threads for Enlighten.
-  Thread -> id: d1c -> priority: 1 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.363054 ms
+  Thread -> id: 2a84 -> priority: 1 
+Network configuration mismatch detected. The number of networked scripts on the client does not match the number of networked scripts on the server. This could be caused by lazy loading of scripts on the client. This warning can be disabled by the checkbox in NetworkManager Script CRC Check.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 334.
-Total: 0.194560 ms (FindLiveObjects: 0.010860 ms CreateObjectMapping: 0.013032 ms MarkObjects: 0.163219 ms  DeleteObjects: 0.007136 ms)
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+CRC Local Dump PlayerSyncPosition : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.455835 ms
+CRC Local Dump PlayerSyncRotation : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 334.
-Total: 0.437217 ms (FindLiveObjects: 0.065784 ms CreateObjectMapping: 0.041580 ms MarkObjects: 0.318681 ms  DeleteObjects: 0.010240 ms)
+CRC Local Dump ChatManager : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Local Dump Player : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Local Dump GameController : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Local Dump CheckConnection : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Remote Dump PlayerSyncRotation : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Remote Dump Player : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Remote Dump PlayerSyncPosition : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Remote Dump ChatManager : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Remote Dump GameController : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CRC Remote Dump CheckConnection : 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+UnloadTime: 7.226951 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 528.
+Total: 0.711524 ms (FindLiveObjects: 0.031650 ms CreateObjectMapping: 0.027616 ms MarkObjects: 0.547374 ms  DeleteObjects: 0.103951 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.353434 ms
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 676.
+Total: 1.432978 ms (FindLiveObjects: 0.031340 ms CreateObjectMapping: 0.054302 ms MarkObjects: 1.337094 ms  DeleteObjects: 0.009929 ms)
+
+Socket: bind failed, error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+Cannot open socket on ip {*} and port {27015}; check please your network, most probably port has been already occupied
+ 
+(Filename:  Line: 488)
+
+StartServer listen failed.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.614709 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 525.
+Total: 0.886535 ms (FindLiveObjects: 0.032892 ms CreateObjectMapping: 0.032892 ms MarkObjects: 0.713386 ms  DeleteObjects: 0.106744 ms)
+
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.460179 ms
+UnloadTime: 0.392843 ms
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 336.
-Total: 0.327680 ms (FindLiveObjects: 0.020169 ms CreateObjectMapping: 0.026686 ms MarkObjects: 0.236761 ms  DeleteObjects: 0.042821 ms)
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 676.
+Total: 1.111194 ms (FindLiveObjects: 0.027616 ms CreateObjectMapping: 0.030719 ms MarkObjects: 1.043548 ms  DeleteObjects: 0.008688 ms)
 
-UnloadTime: 0.464213 ms
+Socket: bind failed, error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+Cannot open socket on ip {*} and port {27015}; check please your network, most probably port has been already occupied
+ 
+(Filename:  Line: 488)
 
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 336.
-Total: 0.390981 ms (FindLiveObjects: 0.034443 ms CreateObjectMapping: 0.027306 ms MarkObjects: 0.244208 ms  DeleteObjects: 0.084402 ms)
+StartServer listen failed.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Socket: bind failed, error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
+Cannot open socket on ip {*} and port {27015}; check please your network, most probably port has been already occupied
+ 
+(Filename:  Line: 488)
+
+StartServer listen failed.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.544581 ms
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 525.
+Total: 0.653187 ms (FindLiveObjects: 0.021100 ms CreateObjectMapping: 0.024203 ms MarkObjects: 0.539926 ms  DeleteObjects: 0.067646 ms)
 
