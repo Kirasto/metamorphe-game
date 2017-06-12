@@ -12,6 +12,7 @@ namespace PlayerInfo
         public int id;
         public GameController.PlayerRole role;
         public bool isDead;
+        public bool isReady;
 
         public PlayerInfo(string name)
         {
@@ -19,6 +20,7 @@ namespace PlayerInfo
             id = -1;
             role = GameController.PlayerRole.NONE;
             isDead = false;
+            isReady = false;
         }
 
         public bool isValide()
@@ -33,6 +35,11 @@ namespace PlayerInfo
         public void setIsDead(bool _isDead)
         {
             isDead = _isDead;
+        }
+
+        public void setReady(bool _isReady)
+        {
+            isReady = _isReady;
         }
     }
 }

@@ -6,6 +6,14 @@ using PlayerInfo;
 
 public class Player : NetworkBehaviour {
 
+    public enum MENU_TYPE
+    {
+        LOBBY,
+        GAME,
+        PAPER,
+        END
+    }
+
     //*//   Public Variable   //*//
 
     public ChatManager chatManager;
@@ -15,6 +23,8 @@ public class Player : NetworkBehaviour {
 
     [SyncVar]
     private PlayerInfo.PlayerInfo playerInfo;
+    [SyncVar]
+    private MENU_TYPE menuType;
 
     //*//   Default Function   //*//
 
@@ -38,6 +48,34 @@ public class Player : NetworkBehaviour {
         gameController.addNewPlayer(playerInfo);
     }
 
+    [Command]
+    public void CmdOnPlayerChangeReady(bool isReady)
+    {
+        playerInfo.setReady(isReady);
+        if (isAllPlayerReady())
+        {
+            gameController.startGame();
+        }
+    }
+
+    [ClientRpc]
+    public void RpcSetStateOfMenu(MENU_TYPE nextMenuType)
+    {
+        switch (menuType)
+        {
+            case MENU_TYPE.LOBBY:
+                transform.Find("Canvas").gameObject.transform.Find("LobbyMenu").gameObject.SetActive(false);
+                break;
+        }
+        switch (nextMenuType)
+        {
+            case MENU_TYPE.LOBBY:
+                transform.Find("Canvas").gameObject.transform.Find("LobbyMenu").gameObject.SetActive(true);
+                break;
+        }
+        menuType = nextMenuType;
+    }
+
     //*//   Get Function   //*//
 
     public string getPlayerName()
@@ -51,6 +89,20 @@ public class Player : NetworkBehaviour {
     }
 
     //*//   Is Function   //*//
+
+    private bool isAllPlayerReady()
+    {
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject go in gos)
+        {
+            if (!go.GetComponent<Player>().getPlayerInfo().isReady)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public bool isLocalObject()
     {

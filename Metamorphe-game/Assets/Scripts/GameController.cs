@@ -34,7 +34,9 @@ public class GameController : NetworkBehaviour {
     public CycleState cycleState = CycleState.ON_DAY;
     [SyncVar(hook = "OnGameStateChanged")]
     public GameState gameState = GameState.LOBBY_TIME;
-    
+    [SerializeField]
+    public EnvironmentController environmentController;
+
     public List<PlayerInfo.PlayerInfo> playersInfo = new List<PlayerInfo.PlayerInfo>();
 
     public GameObject playerObject;
@@ -43,6 +45,8 @@ public class GameController : NetworkBehaviour {
     private void Start()
     {
     }
+
+    //*//   On Add Player On Server   //*//
 
     public int getNextId()
     {
@@ -54,6 +58,8 @@ public class GameController : NetworkBehaviour {
         playersInfo.Add(playerInfo);
         CmdOnPlayerConnectedFromServer(playerInfo.playerName);
     }
+
+    //*//   Get Player Information   //*//
 
     public string getPlayerNameOf(int playerId)
     {
@@ -81,6 +87,8 @@ public class GameController : NetworkBehaviour {
         }
         return playerInfo;
     }
+
+    //*//   On Player Connected Or Disconnected From Server   //*//
 
     [Command]
     public void CmdOnPlayerConnectedFromServer(string playerName)
@@ -114,6 +122,8 @@ public class GameController : NetworkBehaviour {
         }
     }
 
+    //*//   Send Message Function   //*//
+
     [Command]
     void CmdSendMessageToAllClient(string message)
     {
@@ -126,16 +136,54 @@ public class GameController : NetworkBehaviour {
         }
     }
 
+    //*//   Game Start   //*//
+
+    [Server]
+    public void startGame()
+    {
+        setNight();
+        GameObject[] gos;
+        gos = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject go in gos)
+        {
+            go.GetComponent<Player>().RpcSetStateOfMenu(Player.MENU_TYPE.GAME);
+            break;
+        }
+    }
+
+    //*//   Change CycleState Function   //*//
+
+    [Server]
+    public void setNight()
+    {
+        cycleState = CycleState.ON_NIGHT;
+    }
+
+    [Server]
+    public void setDay()
+    {
+        cycleState = CycleState.ON_NIGHT;
+    }
+
+    //*//   On SyncVar Change   //*//
+
     void OnCycleStateChanged(CycleState newCycleState)
     {
         cycleState = newCycleState;
-        Debug.Log("cycle state change");
+        Debug.Log("cycle state change to: " + newCycleState.ToString());
+        if (cycleState == CycleState.ON_DAY)
+        {
+            environmentController.setDaySkyBox();
+        }
+        else if (cycleState == CycleState.ON_NIGHT)
+        {
+            environmentController.setNightSkyBox();
+        }
     }
 
     void OnGameStateChanged(GameState newGameState)
     {
         gameState = newGameState;
-        transform.Find("Text").GetComponent<Text>().text = "2";
         Debug.Log("game state change");
     }
 }
