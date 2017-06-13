@@ -54,13 +54,17 @@ public class Player : NetworkBehaviour {
         playerInfo.setReady(isReady);
         if (isAllPlayerReady())
         {
-            gameController.startGame();
+            gameController.CmdStartGame();
         }
     }
 
     [ClientRpc]
     public void RpcSetStateOfMenu(MENU_TYPE nextMenuType)
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         switch (menuType)
         {
             case MENU_TYPE.LOBBY:
@@ -73,7 +77,13 @@ public class Player : NetworkBehaviour {
                 transform.Find("Canvas").gameObject.transform.Find("LobbyMenu").gameObject.SetActive(true);
                 break;
         }
-        menuType = nextMenuType;
+        CmdChangeMenuType(nextMenuType);
+    }
+
+    [Command]
+    private void CmdChangeMenuType(MENU_TYPE _menuType)
+    {
+        menuType = _menuType;
     }
 
     //*//   Get Function   //*//

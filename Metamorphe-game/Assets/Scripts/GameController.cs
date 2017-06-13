@@ -138,8 +138,8 @@ public class GameController : NetworkBehaviour {
 
     //*//   Game Start   //*//
 
-    [Server]
-    public void startGame()
+    [Command]
+    public void CmdStartGame()
     {
         setNight();
         GameObject[] gos;
@@ -147,7 +147,6 @@ public class GameController : NetworkBehaviour {
         foreach (GameObject go in gos)
         {
             go.GetComponent<Player>().RpcSetStateOfMenu(Player.MENU_TYPE.GAME);
-            break;
         }
     }
 

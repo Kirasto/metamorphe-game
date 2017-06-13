@@ -21,122 +21,29 @@ Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamo
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\TextMeshPro.dll (this message is harmless)
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\TextMeshPro.dll into Unity Child Domain
-- Completed reload, in  0.037 seconds
+- Completed reload, in  0.064 seconds
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3600x1080 at -1920,-27
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.248037 ms
+UnloadTime: 1.482628 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 2a84 -> priority: 1 
-Network configuration mismatch detected. The number of networked scripts on the client does not match the number of networked scripts on the server. This could be caused by lazy loading of scripts on the client. This warning can be disabled by the checkbox in NetworkManager Script CRC Check.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
+  Thread -> id: 334c -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-CRC Local Dump PlayerSyncPosition : 0
+UnloadTime: 8.204417 ms
+
+Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 670.
+Total: 1.146880 ms (FindLiveObjects: 0.043442 ms CreateObjectMapping: 0.028237 ms MarkObjects: 0.935564 ms  DeleteObjects: 0.138705 ms)
+
+cycle state change to: ON_NIGHT
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Local Dump PlayerSyncRotation : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Local Dump ChatManager : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Local Dump Player : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Local Dump GameController : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Local Dump CheckConnection : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Remote Dump PlayerSyncRotation : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Remote Dump Player : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Remote Dump PlayerSyncPosition : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Remote Dump ChatManager : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Remote Dump GameController : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-CRC Remote Dump CheckConnection : 0
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-UnloadTime: 7.226951 ms
-
-Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 528.
-Total: 0.711524 ms (FindLiveObjects: 0.031650 ms CreateObjectMapping: 0.027616 ms MarkObjects: 0.547374 ms  DeleteObjects: 0.103951 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.353434 ms
+UnloadTime: 0.341954 ms
 
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 676.
-Total: 1.432978 ms (FindLiveObjects: 0.031340 ms CreateObjectMapping: 0.054302 ms MarkObjects: 1.337094 ms  DeleteObjects: 0.009929 ms)
-
-Socket: bind failed, error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
-Cannot open socket on ip {*} and port {27015}; check please your network, most probably port has been already occupied
- 
-(Filename:  Line: 488)
-
-StartServer listen failed.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.614709 ms
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 525.
-Total: 0.886535 ms (FindLiveObjects: 0.032892 ms CreateObjectMapping: 0.032892 ms MarkObjects: 0.713386 ms  DeleteObjects: 0.106744 ms)
-
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.392843 ms
-
-Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 676.
-Total: 1.111194 ms (FindLiveObjects: 0.027616 ms CreateObjectMapping: 0.030719 ms MarkObjects: 1.043548 ms  DeleteObjects: 0.008688 ms)
-
-Socket: bind failed, error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
-Cannot open socket on ip {*} and port {27015}; check please your network, most probably port has been already occupied
- 
-(Filename:  Line: 488)
-
-StartServer listen failed.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Socket: bind failed, error: Only one usage of each socket address (protocol/network address/port) is normally permitted.
-Cannot open socket on ip {*} and port {27015}; check please your network, most probably port has been already occupied
- 
-(Filename:  Line: 488)
-
-StartServer listen failed.
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.544581 ms
-
-Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 525.
-Total: 0.653187 ms (FindLiveObjects: 0.021100 ms CreateObjectMapping: 0.024203 ms MarkObjects: 0.539926 ms  DeleteObjects: 0.067646 ms)
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 708.
+Total: 1.182255 ms (FindLiveObjects: 0.026065 ms CreateObjectMapping: 0.027616 ms MarkObjects: 1.017484 ms  DeleteObjects: 0.110778 ms)
 
