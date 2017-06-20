@@ -9,17 +9,12 @@ public class ChatManager : NetworkBehaviour {
 
     [SyncVar]
     public SyncListString chatMessages = new SyncListString();
-    
-    public NetworkPlayer networkPlayer;
 
     [SerializeField]
     public TMP_Text textChat;
 
     [SerializeField]
     public TMP_InputField textField;
-
-    [SerializeField]
-    GameObject playerInfoNetwork;
 
     GameObject gameManager;
     public Player player;

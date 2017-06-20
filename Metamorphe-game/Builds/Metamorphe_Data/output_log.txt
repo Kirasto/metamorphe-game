@@ -21,29 +21,24 @@ Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamo
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\TextMeshPro.dll (this message is harmless)
 Loading F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\TextMeshPro.dll into Unity Child Domain
-- Completed reload, in  0.064 seconds
+- Completed reload, in  0.169 seconds
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: F:\Projet\Perso\metamorphe-game\Metamorphe-game\Builds\Metamorphe_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3600x1080 at -1920,-27
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.482628 ms
+UnloadTime: 1.618229 ms
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 334c -> priority: 1 
+  Thread -> id: 27d4 -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.204417 ms
+UnloadTime: 6.404963 ms
 
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 670.
-Total: 1.146880 ms (FindLiveObjects: 0.043442 ms CreateObjectMapping: 0.028237 ms MarkObjects: 0.935564 ms  DeleteObjects: 0.138705 ms)
+Total: 1.045100 ms (FindLiveObjects: 0.037546 ms CreateObjectMapping: 0.023893 ms MarkObjects: 0.852402 ms  DeleteObjects: 0.130637 ms)
 
 cycle state change to: ON_NIGHT
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
 
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.341954 ms
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 708.
-Total: 1.182255 ms (FindLiveObjects: 0.026065 ms CreateObjectMapping: 0.027616 ms MarkObjects: 1.017484 ms  DeleteObjects: 0.110778 ms)
-
+Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:64138}

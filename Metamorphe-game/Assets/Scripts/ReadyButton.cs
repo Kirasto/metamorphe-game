@@ -10,15 +10,6 @@ public class ReadyButton : MonoBehaviour {
 
     public void ClickReadyButton()
     {
-        bool isReady = !player.getPlayerInfo().isReady;
-        player.CmdOnPlayerChangeReady(isReady);
-        if (isReady)
-        {
-            chatManager.CmdSendMessageToServer(player.getPlayerName() + " is now ready !");
-        }
-        else
-        {
-            chatManager.CmdSendMessageToServer(player.getPlayerName() + " is not ready !");
-        }
+        player.CmdChangeReady();
     }
 }

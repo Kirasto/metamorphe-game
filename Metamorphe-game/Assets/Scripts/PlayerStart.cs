@@ -9,9 +9,6 @@ public class PlayerStart : NetworkBehaviour {
 	void Start () {
         if (isLocalPlayer)
         {
-            //GetComponent<CharacterController>().enabled = true;
-            //GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
-
             transform.Find("FirstPersonCharacter").gameObject.SetActive(true);
             transform.Find("Canvas").gameObject.SetActive(true);
         }

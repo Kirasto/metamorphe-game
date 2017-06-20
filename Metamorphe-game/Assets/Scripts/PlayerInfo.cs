@@ -23,6 +23,15 @@ namespace PlayerInfo
             isReady = false;
         }
 
+        public PlayerInfo(PlayerInfo p)
+        {
+            playerName = p.playerName;
+            id = p.id;
+            role = p.role;
+            isDead = p.isDead;
+            isReady = p.isReady;
+        }
+
         public bool isValide()
         {
             if (isDead)
@@ -41,5 +50,9 @@ namespace PlayerInfo
         {
             isReady = _isReady;
         }
+    }
+
+    public class SyncListPlayerInfo : SyncListStruct<PlayerInfo>
+    {
     }
 }

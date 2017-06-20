@@ -88,6 +88,46 @@ public class GameController : NetworkBehaviour {
         return playerInfo;
     }
 
+    public int getIndexOfPlayer(int id)
+    {
+        int index = 0;
+
+        foreach (PlayerInfo.PlayerInfo p in playersInfo)
+        {
+            if (p.id == id)
+            {
+                return (index);
+            }
+            index++;
+        }
+        return -1;
+    }
+
+    //*//   Set Function   //*//
+
+    [Command]
+    public void CmdSetReady(int id, bool isReady)
+    {
+        int index = getIndexOfPlayer(id);
+        PlayerInfo.PlayerInfo p = playersInfo[index];
+        p.setReady(isReady);
+        playersInfo[index] = p;
+    }
+
+    //*//   Is Function   //*//
+
+    private bool isAllPlayerReady()
+    {
+        foreach (PlayerInfo.PlayerInfo p in playersInfo)
+        {
+            if (!p.isReady)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //*//   On Player Connected Or Disconnected From Server   //*//
 
     [Command]
@@ -107,7 +147,7 @@ public class GameController : NetworkBehaviour {
             gos = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject go in gos)
             {
-                if (go.GetComponent<Player>().getPlayerInfo().id == id)
+                if (go.GetComponent<Player>().getId() == id)
                 {
                     flag = true;
                     break;
@@ -119,6 +159,18 @@ public class GameController : NetworkBehaviour {
                 CmdSendMessageToAllClient(playersInfo[index].playerName + " left the game !");
             }
             index++;
+        }
+    }
+
+    //*//   On Change PlayerInfo   //*//
+
+    [Command]
+    public void CmdOnPlayerChangeReady(int id, bool isReady)
+    {
+        CmdSetReady(id, isReady);
+        if (isAllPlayerReady())
+        {
+            CmdStartGame();
         }
     }
 

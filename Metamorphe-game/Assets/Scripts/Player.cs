@@ -22,9 +22,9 @@ public class Player : NetworkBehaviour {
     //*//   Private Variable   //*//
 
     [SyncVar]
-    private PlayerInfo.PlayerInfo playerInfo;
+    public MENU_TYPE menuType;
     [SyncVar]
-    private MENU_TYPE menuType;
+    private PlayerInfo.PlayerInfo playerInfo = new PlayerInfo.PlayerInfo();
 
     //*//   Default Function   //*//
 
@@ -43,19 +43,9 @@ public class Player : NetworkBehaviour {
     [Command]
     void CmdOnPlayerConnected(PlayerInfo.PlayerInfo _playerInfo)
     {
-        playerInfo = _playerInfo;
-        playerInfo.id = gameController.getNextId();
-        gameController.addNewPlayer(playerInfo);
-    }
-
-    [Command]
-    public void CmdOnPlayerChangeReady(bool isReady)
-    {
-        playerInfo.setReady(isReady);
-        if (isAllPlayerReady())
-        {
-            gameController.CmdStartGame();
-        }
+        _playerInfo.id = gameController.getNextId();
+        playerInfo = new PlayerInfo.PlayerInfo(_playerInfo);
+        gameController.addNewPlayer(_playerInfo);
     }
 
     [ClientRpc]
@@ -76,6 +66,10 @@ public class Player : NetworkBehaviour {
             case MENU_TYPE.LOBBY:
                 transform.Find("Canvas").gameObject.transform.Find("LobbyMenu").gameObject.SetActive(true);
                 break;
+            case MENU_TYPE.GAME:
+                GetComponent<CharacterController>().enabled = true;
+                GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
+                break;
         }
         CmdChangeMenuType(nextMenuType);
     }
@@ -86,6 +80,21 @@ public class Player : NetworkBehaviour {
         menuType = _menuType;
     }
 
+    [Command]
+    public void CmdChangeReady()
+    {
+        bool isReady = !playerInfo.isReady;
+        CmdSetReady(isReady);
+        if (isReady)
+        {
+            chatManager.CmdSendMessageToServer(getPlayerName() + " is now ready !");
+        }
+        else
+        {
+            chatManager.CmdSendMessageToServer(getPlayerName() + " is not ready !");
+        }
+    }
+
     //*//   Get Function   //*//
 
     public string getPlayerName()
@@ -93,26 +102,21 @@ public class Player : NetworkBehaviour {
         return playerInfo.playerName;
     }
 
-    public PlayerInfo.PlayerInfo getPlayerInfo()
+    public int getId()
     {
-        return playerInfo;
+        return playerInfo.id;
+    }
+
+    //*//   Set Function   //*//
+
+    [Command]
+    public void CmdSetReady(bool isReady)
+    {
+        playerInfo.setReady(isReady);
+        gameController.CmdOnPlayerChangeReady(playerInfo.id, isReady);
     }
 
     //*//   Is Function   //*//
-
-    private bool isAllPlayerReady()
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject go in gos)
-        {
-            if (!go.GetComponent<Player>().getPlayerInfo().isReady)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public bool isLocalObject()
     {
