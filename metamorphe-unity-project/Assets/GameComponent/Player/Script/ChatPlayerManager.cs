@@ -28,7 +28,7 @@ namespace Player
         }
 
         [Command]
-        protected void CmdSendMessageToPlayers(string message)
+        public void CmdSendMessageToPlayers(string message)
         {
             GameObject[] gos;
             gos = GameObject.FindGameObjectsWithTag("Player");
@@ -43,7 +43,7 @@ namespace Player
         {
             if (isLocalPlayer)
             {
-                Debug.Log(message);
+                Debug.Log("Chat: " + message);
                 chatPanelController.addMessage(message);
             }
         }

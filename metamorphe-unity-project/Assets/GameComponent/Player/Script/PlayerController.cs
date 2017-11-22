@@ -1,34 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-
-    //Variables
-    public float speed = 6.0F;
-    public float jumpSpeed = 8.0F;
-    public float gravity = 20.0F;
-    private Vector3 moveDirection = Vector3.zero;
-
-    void Update()
+namespace Player
+{
+    public class PlayerController : NetworkBehaviour
     {
-        CharacterController controller = GetComponent<CharacterController>();
-        // is the controller on the ground?
-        if (controller.isGrounded)
-        {
-            //Feed moveDirection with input.
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            //Multiply it by speed.
-            moveDirection *= speed;
-            //Jumping
-            if (Input.GetButton("Jump"))
-                moveDirection.y = jumpSpeed;
+        private GameController.GameController gameController;
+        private ChatPlayerManager chatPlayerManager;
+        private Player player;
 
+        public KeyCode readyKey;
+
+        public void Start()
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.GameController>();
+            chatPlayerManager = GetComponent<ChatPlayerManager>();
+            player = GetComponent<Player>();
+
+            readyKey = KeyCode.R;
         }
-        //Applying gravity to the controller
-        moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
-        controller.Move(moveDirection * Time.deltaTime);
+
+        public void Update()
+        {
+            if (!isLocalPlayer) { return; }
+            if (Input.GetKeyDown(readyKey))
+            {
+                switchReady();
+            }
+        }
+
+        [SyncVar]
+        private bool isReady;
+        public bool IsReady
+        {
+            get { return isReady; }
+        }
+
+        public void switchReady()
+        {
+            CmdSwitchReady();
+        }
+
+        [Command]
+        public void CmdSwitchReady()
+        {
+            isReady = !isReady;
+
+            string newMessage;
+            newMessage = "[" + player.playerName + "]" + ((IsReady)?(" is ready !"):("is not ready !"));
+            chatPlayerManager.CmdSendMessageToPlayers(newMessage);
+            gameController.CmdOnPlayerSetReady();
+        }
     }
 }
