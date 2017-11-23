@@ -4,13 +4,22 @@ using UnityEngine;
 
 namespace Player
 {
-    public struct PlayerInfo
+    public class PlayerInfo
     {
         public string playerName;
         public int id;
         public bool isDead;
         public bool isReady;
-        public Role.Type roleType;
+        public Role.Type role;
+
+        public PlayerInfo()
+        {
+            playerName = "Unknow";
+            id = -1;
+            isDead = false;
+            isReady = false;
+            role = Role.Type.villager;
+        }
 
         public PlayerInfo(string name)
         {
@@ -18,7 +27,7 @@ namespace Player
             id = -1;
             isDead = false;
             isReady = false;
-            roleType = unknow;
+            role = Role.Type.villager;
         }
 
         public PlayerInfo(PlayerInfo p)
@@ -27,7 +36,7 @@ namespace Player
             id = p.id;
             isDead = p.isDead;
             isReady = p.isReady;
-            roleType = p.roleType;
+            role = p.role;
         }
     }
 }
