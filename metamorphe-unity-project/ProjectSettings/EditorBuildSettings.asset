@@ -4,4 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GameComponent/Scenes/LobbyOffline.unity
+    guid: f4cc5b631e9a19c418ce595ac028fe09
+  - enabled: 1
+    path: Assets/GameComponent/Scenes/VillageLevel.unity
+    guid: 97e9505a76b4e1c419e7d5ced0ab8135
+>>>>>>> origin/development

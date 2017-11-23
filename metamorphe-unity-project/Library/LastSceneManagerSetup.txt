@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/Lobby-Offline.unity
+=======
+- path: Assets/GameComponent/Scenes/LobbyOffline.unity
+>>>>>>> origin/development
   isLoaded: 1
   isActive: 1

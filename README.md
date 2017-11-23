@@ -1,2 +1,2 @@
 # metamorphe-game
-Le jeu du métamorhpe
+Le jeu du métamorphe

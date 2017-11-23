@@ -1,0 +1,42 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Player
+{
+    public class PlayerInfo
+    {
+        public string playerName;
+        public int id;
+        public bool isDead;
+        public bool isReady;
+        public Role.Type role;
+
+        public PlayerInfo()
+        {
+            playerName = "Unknow";
+            id = -1;
+            isDead = false;
+            isReady = false;
+            role = Role.Type.villager;
+        }
+
+        public PlayerInfo(string name)
+        {
+            playerName = name;
+            id = -1;
+            isDead = false;
+            isReady = false;
+            role = Role.Type.villager;
+        }
+
+        public PlayerInfo(PlayerInfo p)
+        {
+            playerName = p.playerName;
+            id = p.id;
+            isDead = p.isDead;
+            isReady = p.isReady;
+            role = p.role;
+        }
+    }
+}
