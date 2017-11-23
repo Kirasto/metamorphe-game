@@ -193,12 +193,14 @@ GameObject:
   - component: {fileID: 54091888399555642}
   - component: {fileID: 82787213630027526}
   - component: {fileID: 114786279054778210}
+  - component: {fileID: 114704856591149346}
   - component: {fileID: 114874692197393664}
   - component: {fileID: 114066468887993118}
   - component: {fileID: 114696947675059278}
   - component: {fileID: 114633304274817402}
   - component: {fileID: 114709196772928300}
   - component: {fileID: 114516898786284024}
+  - component: {fileID: 114754353806909544}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -307,6 +309,7 @@ GameObject:
   - component: {fileID: 20177634716834916}
   - component: {fileID: 81369107311086466}
   - component: {fileID: 124638305181639098}
+  - component: {fileID: 45810262443062508}
   m_Layer: 0
   m_Name: FirstPersonCharacter
   m_TagString: MainCamera
@@ -536,6 +539,14 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1509591557757046}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!45 &45810262443062508
+Skybox:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1711356184178562}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!54 &54091888399555642
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1264,6 +1275,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114704856591149346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364309463829126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac16f6a58698ec6479b4f0dc10a32bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114709196772928300
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1277,6 +1299,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTransform: {fileID: 4203626260754918}
   lerpRate: 15
+--- !u!114 &114754353806909544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364309463829126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c857ca00a6e6bd8478c1c75ef2c37868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightSkyboxMaterial: {fileID: 2100000, guid: ceb0a3ed2cb53a94fa21843cc958c52b, type: 2}
+  daySkyboxMaterial: {fileID: 2100000, guid: 617d9be015db68348a623b01ea51a8c5, type: 2}
+  skybox: {fileID: 45810262443062508}
 --- !u!114 &114762064178769402
 MonoBehaviour:
   m_ObjectHideFlags: 1

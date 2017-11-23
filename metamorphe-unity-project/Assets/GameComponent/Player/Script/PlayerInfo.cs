@@ -10,6 +10,7 @@ namespace Player
         public int id;
         public bool isDead;
         public bool isReady;
+        public Role.Type roleType;
 
         public PlayerInfo(string name)
         {
@@ -17,6 +18,7 @@ namespace Player
             id = -1;
             isDead = false;
             isReady = false;
+            roleType = unknow;
         }
 
         public PlayerInfo(PlayerInfo p)
@@ -25,6 +27,7 @@ namespace Player
             id = p.id;
             isDead = p.isDead;
             isReady = p.isReady;
+            roleType = p.roleType;
         }
     }
 }

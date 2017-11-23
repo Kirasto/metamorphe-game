@@ -7,12 +7,23 @@ namespace GameController
 {
     public class GameController : NetworkBehaviour
     {
+        CycleController cycleController;
+        PlayersController playersController;
+
+        public void Awake()
+        {
+            cycleController = GetComponent<CycleController>();
+            playersController = GetComponent<PlayersController>();
+        }
+
         [Command]
         public void CmdOnPlayerSetReady()
         {
             if (allPlayerIsReady())
             {
                 Debug.Log("All player is ready");
+                playersController.CmdSetRoleToPlayer();
+                cycleController.CmdNextEvent();
             }
         }
         

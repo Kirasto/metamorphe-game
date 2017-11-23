@@ -9,14 +9,17 @@ namespace Player
     {
         public GameObject gameControllerPrefabs;
         private GameController.PlayersController playersController;
-        
+        private GameController.CycleController cycleController;
+
         // Use this for initialization
         void Start()
         {
             playersController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.PlayersController>();
+            cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
             if (isLocalPlayer && isServer)
             {
                 playersController.CmdInit();
+                cycleController.CmdInitEventsList();
             }
             if (isLocalPlayer)
             {

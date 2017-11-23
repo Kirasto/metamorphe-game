@@ -8,6 +8,7 @@ namespace Player
     public class PlayerController : NetworkBehaviour
     {
         private GameController.GameController gameController;
+        private GameController.CycleController cycleController;
         private ChatPlayerManager chatPlayerManager;
         private Player player;
 
@@ -16,6 +17,7 @@ namespace Player
         public void Start()
         {
             gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.GameController>();
+            cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
             chatPlayerManager = GetComponent<ChatPlayerManager>();
             player = GetComponent<Player>();
 
@@ -46,12 +48,19 @@ namespace Player
         [Command]
         public void CmdSwitchReady()
         {
+            if (cycleController.timeOf != GameController.CycleController.TimeOf.wait) { return; }
             isReady = !isReady;
 
             string newMessage;
             newMessage = "[" + player.playerName + "]" + ((IsReady)?(" is ready !"):("is not ready !"));
             chatPlayerManager.CmdSendMessageToPlayers(newMessage);
             gameController.CmdOnPlayerSetReady();
+        }
+            
+        public void setControlToPlayer(bool canControl)
+        {
+            GetComponent<CharacterController>().enabled = canControl;
+            GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = canControl;
         }
     }
 }

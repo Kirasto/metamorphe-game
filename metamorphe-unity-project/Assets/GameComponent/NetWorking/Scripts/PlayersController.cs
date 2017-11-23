@@ -104,5 +104,21 @@ namespace GameController
                 go.GetComponent<Player.ChatPlayerManager>().RpcRecieveMessageFromServer(message);
             }
         }
+
+        [Command]
+        public void CmdSetRoleToPlayer()
+        {
+            int nbMeta = (int)Mathf.Ceil(GameObject.FindGameObjectsWithTag("Player").Length / 3);
+        }
+    }
+}
+
+namespace Role
+{
+    public enum Type
+    {
+        metamorphe,
+        villager,
+        unknow
     }
 }
