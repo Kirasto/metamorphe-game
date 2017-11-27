@@ -9,11 +9,12 @@ namespace Player
     {
         private GameController.GameController gameController;
         private GameController.CycleController cycleController;
-        private Menu.TimerPanelController timerPanelController;
+        private Menu.Timer.TimerPanelController timerPanelController;
         private ChatPlayerManager chatPlayerManager;
         private Player player;
 
         public KeyCode readyKey;
+        public Role.Type roleType;
 
         public void Start()
         {
@@ -22,7 +23,7 @@ namespace Player
                 gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.GameController>();
                 cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
             }
-            timerPanelController = GameObject.FindGameObjectWithTag("TimerPanel").GetComponent<Menu.TimerPanelController>();
+            timerPanelController = GameObject.FindGameObjectWithTag("TimerPanel").GetComponent<Menu.Timer.TimerPanelController>();
             chatPlayerManager = GetComponent<ChatPlayerManager>();
             player = GetComponent<Player>();
 
@@ -75,6 +76,12 @@ namespace Player
             {
                 timerPanelController.setTimer(sec);
             }
+        }
+
+        [ClientRpc]
+        public void RpcOnReceiveRole(Role.Type _roleType)
+        {
+            roleType = _roleType;
         }
     }
 }

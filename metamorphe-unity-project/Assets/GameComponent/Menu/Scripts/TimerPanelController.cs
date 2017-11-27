@@ -4,49 +4,51 @@ using UnityEngine;
 
 namespace Menu
 {
-    public class TimerPanelController : MonoBehaviour
+    namespace Timer
     {
-        float timer;
-        bool isTimerOn;
-
-        public TMPro.TMP_Text timerText;
-
-        private void Start()
+        public class TimerPanelController : MonoBehaviour
         {
-            isTimerOn = false;
-        }
+            float timer;
+            bool isTimerOn;
 
-        public void setTimer(int sec)
-        {
-            isTimerOn = true;
-            timer = (float)sec;
-        }
+            public TMPro.TMP_Text timerText;
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (isTimerOn)
+            private void Start()
             {
-                timer -= Time.deltaTime;
-                string text = "";
-                int min = (int)timer / 60;
-                int sec = (int)timer % 60;
-                if (min > 0)
-                {
-                    text += min.ToString() + ":";
-                    if (sec < 10)
-                    {
-                        text += "0";
-                    }
-                }
-                text += sec.ToString();
-                timerText.text = text;
+                isTimerOn = false;
+            }
 
-                if (timer < 0)
+            public void setTimer(int sec)
+            {
+                isTimerOn = true;
+                timer = (float)sec;
+            }
+
+            // Update is called once per frame
+            void Update()
+            {
+                if (isTimerOn)
                 {
-                    Debug.Log("end timer");
-                    timer = (float)0;
-                    isTimerOn = false;
+                    timer -= Time.deltaTime;
+                    string text = "";
+                    int min = (int)timer / 60;
+                    int sec = (int)timer % 60;
+                    if (min > 0)
+                    {
+                        text += min.ToString() + ":";
+                        if (sec < 10)
+                        {
+                            text += "0";
+                        }
+                    }
+                    text += sec.ToString();
+                    timerText.text = text;
+
+                    if (timer < 0)
+                    {
+                        timer = (float)0;
+                        isTimerOn = false;
+                    }
                 }
             }
         }

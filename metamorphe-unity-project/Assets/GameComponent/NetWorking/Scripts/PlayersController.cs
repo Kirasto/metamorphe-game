@@ -147,6 +147,7 @@ namespace GameController
             {
                 Role.Type role = getRoleOf(go.GetComponent<Player.Player>().id);
                 go.GetComponent<Player.ChatPlayerManager>().RpcRecieveMessageFromServer((role == Role.Type.metamorphe)?("Tu es un Métamorphe"):("Tu es un Villagoie"));
+                go.GetComponent<Player.PlayerController>().RpcOnReceiveRole(role);
             }
         }
     }
