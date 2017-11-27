@@ -23,6 +23,7 @@ namespace GameController
         public enum TimeOf
         {
             vote,
+            seeRole,
             metamorphe,
             wait
         }
@@ -52,6 +53,7 @@ namespace GameController
 
             events.Add(new EventItemTimeOf(TimeOf.wait, false));
             events.Add(new EventItemDayCycle(DayCycle.night, true));
+            events.Add(new EventItemTimeOf(TimeOf.seeRole, false, 10));
             events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 5));
             events.Add(new EventItemDayCycle(DayCycle.day, true));
             events.Add(new EventItemTimeOf(TimeOf.vote, true, 5));
@@ -84,7 +86,7 @@ namespace GameController
             else if (events[0].type == EventType.changeTimeOf)
             {
                 EventItemTimeOf _eventTimeOf = (EventItemTimeOf)events[0];
-                CmdChangeEventTime(_eventTimeOf.timeOf, _eventTimeOf.isRepeat, _eventTimeOf.timer);
+                CmdChangeEventTime(_eventTimeOf.timeOf, _eventTimeOf.asTimer, _eventTimeOf.timer);
             }
         }
 
@@ -161,11 +163,11 @@ namespace GameController
                 pTimer = _timer;
                 if (_timer <= 0)
                 {
-                    pAsTimer = true;
+                    pAsTimer = false;
                 }
                 else
                 {
-                    pAsTimer = false;
+                    pAsTimer = true;
                 }
             }
         }
