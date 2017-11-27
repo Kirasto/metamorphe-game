@@ -9,6 +9,7 @@ namespace Player
     {
         private GameController.GameController gameController;
         private GameController.CycleController cycleController;
+        private Menu.TimerPanelController timerPanelController;
         private ChatPlayerManager chatPlayerManager;
         private Player player;
 
@@ -16,8 +17,12 @@ namespace Player
 
         public void Start()
         {
-            gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.GameController>();
-            cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
+            if (isServer)
+            {
+                gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.GameController>();
+                cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
+            }
+            timerPanelController = GameObject.FindGameObjectWithTag("TimerPanel").GetComponent<Menu.TimerPanelController>();
             chatPlayerManager = GetComponent<ChatPlayerManager>();
             player = GetComponent<Player>();
 
@@ -61,6 +66,15 @@ namespace Player
         {
             GetComponent<CharacterController>().enabled = canControl;
             GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = canControl;
+        }
+
+        [ClientRpc]
+        public void RpcOnSetTimer(int sec)
+        {
+            if (isLocalPlayer)
+            {
+                timerPanelController.setTimer(sec);
+            }
         }
     }
 }

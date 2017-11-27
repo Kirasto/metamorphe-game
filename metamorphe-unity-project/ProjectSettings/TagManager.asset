@@ -8,6 +8,7 @@ TagManager:
   - GameInfo
   - ChatPanel
   - Chat
+  - TimerPanel
   layers:
   - Default
   - TransparentFX

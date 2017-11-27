@@ -17,7 +17,7 @@ namespace Player
 
         public void Start()
         {
-            cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
+            //cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
             playerController = GetComponent<PlayerController>();
         }
 
