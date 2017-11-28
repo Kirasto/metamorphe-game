@@ -10,6 +10,7 @@ TagManager:
   - Chat
   - TimerPanel
   - AnnouncementPanel
+  - BlindPanel
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ namespace Player
         private GameController.GameController gameController;
         private GameController.CycleController cycleController;
         private Menu.Timer.TimerPanelController timerPanelController;
+        private Menu.Effect.EffectPanelContoller effectPanelContoller;
         private ChatPlayerManager chatPlayerManager;
         private Player player;
 
@@ -24,6 +25,7 @@ namespace Player
                 cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
             }
             timerPanelController = GameObject.FindGameObjectWithTag("TimerPanel").GetComponent<Menu.Timer.TimerPanelController>();
+            effectPanelContoller = GameObject.FindGameObjectWithTag("EffectPanel").GetComponent<Menu.Effect.EffectPanelContoller>();
             chatPlayerManager = GetComponent<ChatPlayerManager>();
             player = GetComponent<Player>();
 
@@ -63,10 +65,11 @@ namespace Player
             gameController.CmdOnPlayerSetReady();
         }
             
-        public void setControlToPlayer(bool canControl)
+        public void setControlToPlayer(bool canControl, bool onBlind = true)
         {
             GetComponent<CharacterController>().enabled = canControl;
             GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = canControl;
+            effectPanelContoller.setBlindEffect((onBlind && !canControl)?true:false);
         }
 
         [ClientRpc]

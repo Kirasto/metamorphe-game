@@ -45,6 +45,9 @@ namespace Player
         [ClientRpc]
         public void RpcOnEventTimeChange(GameController.CycleController.TimeOf _timeOf)
         {
+            bool canControl;
+            Role.Type roleType = playerController.roleType;
+
             if (!isLocalPlayer) { return; }
             switch (timeOf)
             {
@@ -72,7 +75,8 @@ namespace Player
                     break;
                 case GameController.CycleController.TimeOf.metamorphe:
                     announcementPanelController.setTitleAnnoucement("C'est l'heure des Métamorphes");
-                    playerController.setControlToPlayer(false);
+                    canControl = (roleType == Role.Type.metamorphe) ? true : false;
+                    playerController.setControlToPlayer(canControl);
                     break;
                 case GameController.CycleController.TimeOf.vote:
                     announcementPanelController.setTitleAnnoucement("C'est parti pour le vote");
