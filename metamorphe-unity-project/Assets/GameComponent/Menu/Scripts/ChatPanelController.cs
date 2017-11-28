@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace Menu
@@ -11,6 +12,7 @@ namespace Menu
         public TMPro.TMP_InputField chatInputField;
         public GameObject messagePrefab;
         public GameObject messagesListPanel;
+        public RectTransform messageListPanelRectTransform;
 
         private GameObject playerObject;
         private Player.ChatPlayerManager chatPlayerManager;
@@ -56,6 +58,7 @@ namespace Menu
             GameObject messageObject = Instantiate(messagePrefab, messagesListPanel.transform);
             messageObject.transform.SetParent(messagesListPanel.transform, false);
             messageObject.GetComponent<TMPro.TMP_Text>().SetText(message);
+            LayoutRebuilder.ForceRebuildLayoutImmediate(messageListPanelRectTransform);
             return;
         }
     }
