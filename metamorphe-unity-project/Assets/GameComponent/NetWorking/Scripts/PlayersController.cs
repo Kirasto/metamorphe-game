@@ -150,6 +150,19 @@ namespace GameController
                 go.GetComponent<Player.PlayerController>().RpcOnReceiveRole(role);
             }
         }
+
+        //*//   Death System   //*//
+
+        [Command]
+        public void CmdGiveDeathTo(int id)
+        {
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject go in gos)
+            {
+                go.GetComponent<Player.PlayerController>().CmdGiveDeath();
+            }
+        }
     }
 }
 

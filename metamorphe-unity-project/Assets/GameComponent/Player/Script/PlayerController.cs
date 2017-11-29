@@ -17,6 +17,8 @@ namespace Player
         public KeyCode readyKey;
         public Role.Type roleType;
 
+        public Camera cam;
+
         public void Start()
         {
             if (isServer)
@@ -38,6 +40,17 @@ namespace Player
             if (Input.GetKeyDown(readyKey))
             {
                 switchReady();
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                CmdGiveDeath();
+            }
+            RaycastHit hit;
+            if (Physics.Raycast(cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0)), out hit))
+            {
+                if (hit.transform.gameObject.tag == "Player")
+                {
+                }
             }
         }
 
@@ -85,6 +98,63 @@ namespace Player
         public void RpcOnReceiveRole(Role.Type _roleType)
         {
             roleType = _roleType;
+        }
+
+        //*//   Death System   //*//
+
+        [Command]
+        public void CmdGiveDeath()
+        {
+            GetComponent<Player>().isDead = true;
+            RpcReceiveDeath();
+        }
+
+        [ClientRpc]
+        public void RpcOnPlayerDeath(int id)
+        {
+            if (!isLocalPlayer || id == GetComponent<Player>().id) { return; }
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject go in gos)
+            {
+                if (go.GetComponent<Player>().id == id)
+                {
+                    if (!GetComponent<Player>().isDead)
+                    {
+                        go.transform.Find("Body").gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+
+        [ClientRpc]
+        public void RpcReceiveDeath()
+        {
+            GameObject body = transform.Find("Body").gameObject;
+            if (!isLocalPlayer) {
+                return;
+            }
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject go in gos)
+            {
+                if (go.GetComponent<Player>().isDead)
+                {
+                    go.transform.Find("Body").gameObject.SetActive(true);
+                }
+            }
+            CmdOnDeathComplete();
+        }
+
+        [Command]
+        public void CmdOnDeathComplete()
+        {
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject go in gos)
+            {
+                go.GetComponent<PlayerController>().RpcOnPlayerDeath(GetComponent<Player>().id);
+            }
         }
     }
 }

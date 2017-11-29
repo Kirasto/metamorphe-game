@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4470189119112644}
   - component: {fileID: 33368382352301166}
   - component: {fileID: 23506361697357852}
+  - component: {fileID: 136920096441907158}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   playerName: 
+  isDead: 0
 --- !u!114 &114251986568573814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -610,6 +612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   readyKey: 0
   roleType: 0
+  cam: {fileID: 20177634716834916}
 --- !u!124 &124638305181639098
 Behaviour:
   m_ObjectHideFlags: 1
@@ -625,6 +628,19 @@ CapsuleCollider:
   m_GameObject: {fileID: 1509591557757046}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &136920096441907158
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007482589018898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
