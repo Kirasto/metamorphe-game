@@ -9,6 +9,7 @@ namespace Player
         public string playerName;
         public int id;
         public bool isDead;
+        public bool isValid;
         public bool isReady;
         public Role.Type role;
 

@@ -43,6 +43,7 @@ namespace GameController
         List<EventItem> events;
         TimerController timerController;
         PlayersController playersController;
+        GameController gameController;
 
         public List<int> playersIdDeath;
 
@@ -51,6 +52,7 @@ namespace GameController
         {
             timerController = GetComponent<TimerController>();
             playersController = GetComponent<PlayersController>();
+            gameController = GetComponent<GameController>();
 
             dayCycle = DayCycle.day;
             timeOf = TimeOf.wait;
@@ -71,8 +73,10 @@ namespace GameController
 
         private void rotateEvent()
         {
+            bool previousIsDeath = false;
             if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath)
             {
+                previousIsDeath = true;
                 events.RemoveAt(0);
             }
             else
@@ -96,6 +100,10 @@ namespace GameController
                     Debug.Log("see Deaths event");
                     events.Insert(0, new EventItemTimeOf(TimeOf.seeDeath, true, 3));
                 }
+            }
+            if (previousIsDeath && events[0].type == EventType.changeTimeOf && !(((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath))
+            {
+                gameController.CmdCheckWin();
             }
         }
 

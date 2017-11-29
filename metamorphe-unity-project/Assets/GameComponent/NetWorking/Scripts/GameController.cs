@@ -68,5 +68,13 @@ namespace GameController
                 cycleController.CmdPlayersVotesFor(voteId);
             }
         }
+
+        //*//   Win System   //*//
+
+        [Command]
+        public void CmdCheckWin()
+        {
+            Debug.Log("Game: On check win");
+        }
     }
 }

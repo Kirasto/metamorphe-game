@@ -30,7 +30,16 @@ namespace Player
             [Command]
             public void CmdOnChoiceVictim(int victimeiId)
             {
-                Debug.Log("Game: A victim as been choise");
+                GameObject[] gos;
+                gos = GameObject.FindGameObjectsWithTag("Player");
+                foreach (GameObject go in gos)
+                {
+                    if (go.GetComponent<Player>().id == victimeiId
+                        && go.GetComponent<PlayerController>().roleType == Role.Type.metamorphe)
+                    {
+                        return;
+                    }
+                }
                 gameController.CmdOnMetamorpheVoteOnId(GetComponent<Player>().id, victimeiId);
             }
 

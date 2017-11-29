@@ -8,6 +8,7 @@ namespace GameController
     public class PlayersController : NetworkBehaviour
     {
         Player.ChatPlayerManager chatPlayerManager;
+        GameController gameController;
         List<Player.PlayerInfo> playersInfo;
 
         private int nbPlayer;
@@ -31,6 +32,7 @@ namespace GameController
         public void CmdInit()
         {
             Debug.Log("Network: Start GameController");
+            gameController = GetComponent<GameController>();
             playersInfo = new List<Player.PlayerInfo>();
 
             nbPlayer = 0;
@@ -102,6 +104,19 @@ namespace GameController
                 }
             }
             return "Error";
+        }
+
+        [ServerCallback]
+        public void setIsDeadTo(int id, bool isDead)
+        {
+            foreach (Player.PlayerInfo p in playersInfo)
+            {
+                if (p.id == id)
+                {
+                    p.isDead = isDead;
+                    return;
+                }
+            }
         }
 
         [Command]
@@ -200,7 +215,7 @@ namespace GameController
             int index = 0;
             while (index < playersInfo.Count)
             {
-                if (playersInfo[index].role == roleType && !playersInfo[index].asVote)
+                if (!playersInfo[index].isDead && playersInfo[index].role == roleType && !playersInfo[index].asVote)
                 {
                     return false;
                 }
@@ -215,7 +230,7 @@ namespace GameController
             int index = 0;
             while (index < playersInfo.Count)
             {
-                if (!playersInfo[index].asVote)
+                if (!playersInfo[index].isDead && !playersInfo[index].asVote)
                 {
                     return false;
                 }
@@ -231,7 +246,7 @@ namespace GameController
             Dictionary<int, int> votesOnId = new Dictionary<int, int>();
             while (index < playersInfo.Count)
             {
-                if (playersInfo[index].role == roleType && playersInfo[index].asVote)
+                if (!playersInfo[index].isDead && playersInfo[index].role == roleType && playersInfo[index].asVote)
                 {
                     if (!votesOnId.ContainsKey(playersInfo[index].voteOnId))
                     {
@@ -271,7 +286,7 @@ namespace GameController
             Dictionary<int, int> votesOnId = new Dictionary<int, int>();
             while (index < playersInfo.Count)
             {
-                if (!playersInfo[index].asVote)
+                if (!playersInfo[index].isDead && !playersInfo[index].asVote)
                 {
                     if (!votesOnId.ContainsKey(playersInfo[index].voteOnId))
                     {
