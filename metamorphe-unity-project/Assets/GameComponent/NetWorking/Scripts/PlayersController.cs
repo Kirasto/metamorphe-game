@@ -78,7 +78,8 @@ namespace GameController
             return false;
         }
 
-        private Role.Type getRoleOf(int id)
+        [ServerCallback]
+        public Role.Type getRoleOf(int id)
         {
             foreach (Player.PlayerInfo p in playersInfo)
             {
@@ -88,6 +89,19 @@ namespace GameController
                 }
             }
             return Role.Type.villager;
+        }
+
+        [ServerCallback]
+        public string getPlayerNameOf(int id)
+        {
+            foreach (Player.PlayerInfo p in playersInfo)
+            {
+                if (p.id == id)
+                {
+                    return p.playerName;
+                }
+            }
+            return "Error";
         }
 
         [Command]
@@ -299,7 +313,10 @@ namespace GameController
             gos = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject go in gos)
             {
-                go.GetComponent<Player.PlayerController>().CmdGiveDeath();
+                if (go.GetComponent<Player.Player>().id == id)
+                {
+                    go.GetComponent<Player.PlayerController>().CmdGiveDeath();
+                }
             }
         }
     }

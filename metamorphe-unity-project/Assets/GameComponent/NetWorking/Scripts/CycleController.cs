@@ -25,6 +25,8 @@ namespace GameController
             talk,
             vote,
             seeRole,
+            seeDeath,
+            seeDeaths,
             metamorphe,
             wait
         }
@@ -40,16 +42,21 @@ namespace GameController
 
         List<EventItem> events;
         TimerController timerController;
+        PlayersController playersController;
+
+        public List<int> playersIdDeath;
 
         [Command]
         public void CmdInitEventsList()
         {
             timerController = GetComponent<TimerController>();
+            playersController = GetComponent<PlayersController>();
 
             dayCycle = DayCycle.day;
             timeOf = TimeOf.wait;
 
-            Debug.Log("Network: Init event list");
+            playersIdDeath = new List<int>();
+
             events = new List<EventItem>();
 
             events.Add(new EventItemTimeOf(TimeOf.wait, false));
@@ -57,22 +64,39 @@ namespace GameController
             events.Add(new EventItemTimeOf(TimeOf.seeRole, false, 10));
             events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 60));
             events.Add(new EventItemDayCycle(DayCycle.day, true));
+            events.Add(new EventItemTimeOf(TimeOf.seeDeaths, true));
             events.Add(new EventItemTimeOf(TimeOf.talk, true, 5));
             events.Add(new EventItemTimeOf(TimeOf.vote, true, 5));
         }
 
         private void rotateEvent()
         {
-            events[0].isValid = events[0].isRepeat;
-            EventItem tmp = events[0];
-            events.RemoveAt(0);
-            events.Add(tmp);
+            if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath)
+            {
+                events.RemoveAt(0);
+            }
+            else
+            {
+                events[0].isValid = events[0].isRepeat;
+                EventItem tmp = events[0];
+                events.RemoveAt(0);
+                events.Add(tmp);
+            }
             if (!events[0].isValid)
             {
                 rotateEvent();
                 return;
             }
-            Debug.Log("Game: Rotate event");
+            if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeaths)
+            {
+                Debug.Log("see Deaths event");
+                events.RemoveAt(0);
+                foreach (int i in playersIdDeath)
+                {
+                    Debug.Log("see Deaths event");
+                    events.Insert(0, new EventItemTimeOf(TimeOf.seeDeath, true, 3));
+                }
+            }
         }
 
         [Command]
@@ -95,7 +119,6 @@ namespace GameController
         [Command]
         public void CmdChangeDayCycle(DayCycle _dayCycle)
         {
-            //DayCycle _dayCycle = eventItemDayCycle.dayCycle;
             dayCycle = _dayCycle;   
             GameObject[] gos;
             gos = GameObject.FindGameObjectsWithTag("Player");
@@ -108,13 +131,23 @@ namespace GameController
         [Command]
         public void CmdChangeEventTime(TimeOf _timeOf, bool asTimer, int timer)
         {
-            //TimeOf _timeOf = eventItemTimeOf.timeOf;
             timeOf = _timeOf;
             GameObject[] gos;
             gos = GameObject.FindGameObjectsWithTag("Player");
+            string nameDeath = "";
+            if (_timeOf == TimeOf.seeDeath)
+            {
+                nameDeath = playersController.getPlayerNameOf(playersIdDeath[0]);
+                playersController.CmdGiveDeathTo(playersIdDeath[0]);
+                playersIdDeath.RemoveAt(0);
+            }
             foreach (GameObject go in gos)
             {
                 go.GetComponent<Player.CyclePlayerController>().RpcOnEventTimeChange(_timeOf);
+                if (_timeOf == TimeOf.seeDeath)
+                {
+                    go.GetComponent<Player.CyclePlayerController>().RpcOnReceivePlayerDeath(nameDeath);
+                }
             }
             if (asTimer)
             {
@@ -127,7 +160,8 @@ namespace GameController
         [Command]
         public void CmdPlayersVotesFor(int playerId)
         {
-            Debug.Log("Players Votes for " + playerId);
+            playersIdDeath.Add(playerId);
+            CmdNextEvent();
         }
         
         //*//   Event Class   //*//

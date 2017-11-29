@@ -95,5 +95,12 @@ namespace Player
                     break;
             }
         }
+
+        [ClientRpc]
+        public void RpcOnReceivePlayerDeath(string name)
+        {
+            if (!isLocalPlayer) { return; }
+            announcementPanelController.setTitleAnnoucement(name + " est mort", 3);
+        }
     }
 }
