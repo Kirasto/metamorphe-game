@@ -22,6 +22,7 @@ namespace GameController
         }
         public enum TimeOf
         {
+            talk,
             vote,
             seeRole,
             metamorphe,
@@ -54,8 +55,9 @@ namespace GameController
             events.Add(new EventItemTimeOf(TimeOf.wait, false));
             events.Add(new EventItemDayCycle(DayCycle.night, true));
             events.Add(new EventItemTimeOf(TimeOf.seeRole, false, 10));
-            events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 5));
+            events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 60));
             events.Add(new EventItemDayCycle(DayCycle.day, true));
+            events.Add(new EventItemTimeOf(TimeOf.talk, true, 5));
             events.Add(new EventItemTimeOf(TimeOf.vote, true, 5));
         }
 
@@ -119,6 +121,16 @@ namespace GameController
                 timerController.CmdSetTimer(timer);
             }
         }
+
+        //*//   Vote System   //*//
+
+        [Command]
+        public void CmdPlayersVotesFor(int playerId)
+        {
+            Debug.Log("Players Votes for " + playerId);
+        }
+        
+        //*//   Event Class   //*//
 
         public class EventItem
         {

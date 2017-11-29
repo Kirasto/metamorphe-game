@@ -16,6 +16,8 @@ namespace GameController
             playersController = GetComponent<PlayersController>();
         }
 
+        //*//   Ready System   //*//
+
         [Command]
         public void CmdOnPlayerSetReady()
         {
@@ -26,7 +28,7 @@ namespace GameController
                 cycleController.CmdNextEvent();
             }
         }
-        
+
         private bool allPlayerIsReady()
         {
             GameObject[] gos;
@@ -39,6 +41,32 @@ namespace GameController
                 }
             }
             return true;
+        }
+
+        //*//   Vote System   //*//
+
+        [Command]
+        public void CmdOnMetamorpheVoteOnId(int playerId, int voteOnId)
+        {
+            playersController.CmdPlayerVote(playerId, voteOnId);
+            if (playersController.isAllPlayerVote(Role.Type.metamorphe))
+            {
+                int voteId = playersController.getVoteId(Role.Type.metamorphe);
+                if (voteId != -1)
+                {
+                    cycleController.CmdPlayersVotesFor(voteId);
+                }
+            }
+        }
+
+        [Command]
+        public void CmdOnTimerEndForVote()
+        {
+            int voteId = playersController.getVoteId(Role.Type.metamorphe);
+            if (voteId != -1)
+            {
+                cycleController.CmdPlayersVotesFor(voteId);
+            }
         }
     }
 }

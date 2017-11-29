@@ -12,6 +12,9 @@ namespace Player
         public bool isReady;
         public Role.Type role;
 
+        public bool asVote;
+        public int voteOnId;
+
         public PlayerInfo()
         {
             playerName = "Unknow";
@@ -19,6 +22,9 @@ namespace Player
             isDead = false;
             isReady = false;
             role = Role.Type.villager;
+
+            asVote = false;
+            voteOnId = -1;
         }
 
         public PlayerInfo(string name)

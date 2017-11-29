@@ -17,8 +17,6 @@ namespace Player
         public KeyCode readyKey;
         public Role.Type roleType;
 
-        public Camera cam;
-
         public void Start()
         {
             if (isServer)
@@ -44,13 +42,6 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.T))
             {
                 CmdGiveDeath();
-            }
-            RaycastHit hit;
-            if (Physics.Raycast(cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0)), out hit))
-            {
-                if (hit.transform.gameObject.tag == "Player")
-                {
-                }
             }
         }
 
@@ -98,6 +89,12 @@ namespace Player
         public void RpcOnReceiveRole(Role.Type _roleType)
         {
             roleType = _roleType;
+            switch (roleType)
+            {
+                case Role.Type.metamorphe:
+                    GetComponent<Roles.MetamorpheController>().enabled = true;
+                    break;
+            }
         }
 
         //*//   Death System   //*//

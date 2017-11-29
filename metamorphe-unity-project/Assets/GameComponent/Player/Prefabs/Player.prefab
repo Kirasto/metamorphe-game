@@ -50,6 +50,8 @@ GameObject:
   - component: {fileID: 114709196772928300}
   - component: {fileID: 114516898786284024}
   - component: {fileID: 114754353806909544}
+  - component: {fileID: 114900057330151946}
+  - component: {fileID: 114689023286682708}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -516,6 +518,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myTransform: {fileID: 4203626260754918}
   lerpRate: 15
+--- !u!114 &114689023286682708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364309463829126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87b8d1b8d21f4b8429371efe6b14dc21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114696947675059278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -612,7 +625,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   readyKey: 0
   roleType: 0
+--- !u!114 &114900057330151946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364309463829126}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ab30ee7f3f1b14595a64f36d3d44dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnEvent: 0
   cam: {fileID: 20177634716834916}
+  choiceKey: 323
 --- !u!124 &124638305181639098
 Behaviour:
   m_ObjectHideFlags: 1

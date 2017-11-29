@@ -58,6 +58,11 @@ namespace Player
                     break;
                 case GameController.CycleController.TimeOf.metamorphe:
                     playerController.setControlToPlayer(true);
+
+                    if (roleType == Role.Type.metamorphe)
+                    {
+                        GetComponent<Roles.MetamorpheController>().setOnEvent(false);
+                    }
                     break;
                 case GameController.CycleController.TimeOf.vote:
                     break;
@@ -77,6 +82,11 @@ namespace Player
                     announcementPanelController.setTitleAnnoucement("C'est l'heure des Métamorphes");
                     canControl = (roleType == Role.Type.metamorphe) ? true : false;
                     playerController.setControlToPlayer(canControl);
+
+                    if (roleType == Role.Type.metamorphe)
+                    {
+                        GetComponent<Roles.MetamorpheController>().setOnEvent(true);
+                    }
                     break;
                 case GameController.CycleController.TimeOf.vote:
                     announcementPanelController.setTitleAnnoucement("C'est parti pour le vote");

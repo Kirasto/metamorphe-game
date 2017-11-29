@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections;   
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
@@ -146,9 +146,148 @@ namespace GameController
             foreach (GameObject go in gos)
             {
                 Role.Type role = getRoleOf(go.GetComponent<Player.Player>().id);
+                switch (role)
+                {
+                    case Role.Type.metamorphe:
+                        go.GetComponent<Player.Roles.MetamorpheController>().enabled = true;
+                        go.GetComponent<Player.Roles.MetamorpheController>().setGameController(GetComponent<GameController>());
+                        break;
+                }
                 go.GetComponent<Player.ChatPlayerManager>().RpcRecieveMessageFromServer((role == Role.Type.metamorphe)?("Tu es un Métamorphe"):("Tu es un Villagoie"));
                 go.GetComponent<Player.PlayerController>().RpcOnReceiveRole(role);
             }
+        }
+
+        //*//   Vote System   //*//
+
+        [Command]
+        public void CmdClearVote()
+        {
+            int index = 0;
+            while (index < playersInfo.Count)
+            {
+                playersInfo[index].asVote = false;
+                playersInfo[index].voteOnId = -1;
+                index++;
+            }
+        }
+
+        [Command]
+        public void CmdPlayerVote(int playerId, int voteId)
+        {
+            int index = playersInfo.FindIndex(obj => obj.id == playerId);
+            playersInfo[index].asVote = true;
+            playersInfo[index].voteOnId = voteId;
+        }
+
+        [ServerCallback]
+        public bool isAllPlayerVote(Role.Type roleType)
+        {
+            int index = 0;
+            while (index < playersInfo.Count)
+            {
+                if (playersInfo[index].role == roleType && !playersInfo[index].asVote)
+                {
+                    return false;
+                }
+                index++;
+            }
+            return true;
+        }
+
+        [ServerCallback]
+        public bool isAllPlayerVote()
+        {
+            int index = 0;
+            while (index < playersInfo.Count)
+            {
+                if (!playersInfo[index].asVote)
+                {
+                    return false;
+                }
+                index++;
+            }
+            return true; ;
+        }
+
+        [ServerCallback]
+        public int getVoteId(Role.Type roleType)
+        {
+            int index = 0;
+            Dictionary<int, int> votesOnId = new Dictionary<int, int>();
+            while (index < playersInfo.Count)
+            {
+                if (playersInfo[index].role == roleType && playersInfo[index].asVote)
+                {
+                    if (!votesOnId.ContainsKey(playersInfo[index].voteOnId))
+                    {
+                        votesOnId.Add(playersInfo[index].voteOnId, 1);
+                    }
+                    else
+                    {
+                        int count = 0;
+                        votesOnId.TryGetValue(playersInfo[index].voteOnId, out count);
+                        votesOnId.Remove(playersInfo[index].voteOnId);
+                        votesOnId.Add(playersInfo[index].voteOnId, count + 1);
+                    }
+                }
+                index++;
+            }
+            KeyValuePair<int, int> maxVotesOnId = new KeyValuePair<int, int>(-1, -1);
+            bool isEnter = false;
+            foreach (KeyValuePair<int, int> onId in votesOnId)
+            {
+                isEnter = true;
+                if (onId.Value > maxVotesOnId.Value)
+                {
+                    maxVotesOnId = onId;
+                }
+            }
+            if (isEnter)
+            {
+                return maxVotesOnId.Key;
+            }
+            return -1;
+        }
+
+        [ServerCallback]
+        public int getVoteId()
+        {
+            int index = 0;
+            Dictionary<int, int> votesOnId = new Dictionary<int, int>();
+            while (index < playersInfo.Count)
+            {
+                if (!playersInfo[index].asVote)
+                {
+                    if (!votesOnId.ContainsKey(playersInfo[index].voteOnId))
+                    {
+                        votesOnId.Add(playersInfo[index].voteOnId, 1);
+                    }
+                    else
+                    {
+                        int count = 0;
+                        votesOnId.TryGetValue(playersInfo[index].voteOnId, out count);
+                        votesOnId.Remove(playersInfo[index].voteOnId);
+                        votesOnId.Add(playersInfo[index].voteOnId, count + 1);
+                    }
+                }
+                index++;
+            }
+            KeyValuePair<int, int> maxVotesOnId = new KeyValuePair<int, int>(-1, -1);
+            bool isEnter = false;
+            foreach (KeyValuePair<int, int> onId in votesOnId)
+            {
+                isEnter = true;
+                if (onId.Value > maxVotesOnId.Value)
+                {
+                    maxVotesOnId = onId;
+                }
+            }
+            if (isEnter)
+            {
+                return maxVotesOnId.Key;
+            }
+            return -1;
         }
 
         //*//   Death System   //*//
