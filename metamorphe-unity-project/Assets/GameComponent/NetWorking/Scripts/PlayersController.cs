@@ -147,6 +147,20 @@ namespace GameController
             {
                 Role.Type role = getRoleOf(go.GetComponent<Player.Player>().id);
                 go.GetComponent<Player.ChatPlayerManager>().RpcRecieveMessageFromServer((role == Role.Type.metamorphe)?("Tu es un Métamorphe"):("Tu es un Villagoie"));
+                go.GetComponent<Player.PlayerController>().RpcOnReceiveRole(role);
+            }
+        }
+
+        //*//   Death System   //*//
+
+        [Command]
+        public void CmdGiveDeathTo(int id)
+        {
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject go in gos)
+            {
+                go.GetComponent<Player.PlayerController>().CmdGiveDeath();
             }
         }
     }

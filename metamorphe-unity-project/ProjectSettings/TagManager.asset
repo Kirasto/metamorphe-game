@@ -11,6 +11,12 @@ TagManager:
   - GameInfo
   - ChatPanel
   - Chat
+<<<<<<< HEAD
+>>>>>>> origin/development
+=======
+  - TimerPanel
+  - AnnouncementPanel
+  - EffectPanel
 >>>>>>> origin/development
   layers:
   - Default

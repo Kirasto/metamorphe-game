@@ -11,12 +11,15 @@ namespace Player
         public int id;
         [SyncVar]
         public string playerName;
+        [SyncVar]
+        public bool isDead;
 
         [Command]
         public void CmdInitPlayer(PlayerInfo _playerInfo)
         {
             id = _playerInfo.id;
             playerName = _playerInfo.playerName;
+            isDead = false;
         }
     }
 }

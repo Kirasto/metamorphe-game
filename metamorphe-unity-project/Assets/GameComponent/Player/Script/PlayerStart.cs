@@ -10,16 +10,22 @@ namespace Player
         public GameObject gameControllerPrefabs;
         private GameController.PlayersController playersController;
         private GameController.CycleController cycleController;
+        private GameController.TimerController timerController;
 
         // Use this for initialization
         void Start()
         {
-            playersController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.PlayersController>();
-            cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
+            if (isServer)
+            {
+                playersController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.PlayersController>();
+                cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
+                timerController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.TimerController>();
+            }
             if (isLocalPlayer && isServer)
             {
                 playersController.CmdInit();
                 cycleController.CmdInitEventsList();
+                timerController.CmdInit();
             }
             if (isLocalPlayer)
             {

@@ -7,7 +7,7 @@ namespace Player
 {
     public class CyclePlayerController : NetworkBehaviour
     {
-        private GameController.CycleController cycleController;
+        private Menu.Annoucement.AnnouncementPanelController announcementPanelController;
         private PlayerController playerController;
 
 
@@ -15,15 +15,22 @@ namespace Player
         public Material daySkyboxMaterial;
         public Skybox skybox;
 
+        GameController.CycleController.TimeOf timeOf;
+
         public void Start()
         {
-            cycleController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController.CycleController>();
+            announcementPanelController = GameObject.FindGameObjectWithTag("AnnouncementPanel").GetComponent<Menu.Annoucement.AnnouncementPanelController>();
             playerController = GetComponent<PlayerController>();
+            if (isLocalPlayer)
+            {
+                announcementPanelController.setTitleAnnoucement("Bienvenue dans la partie");
+            }
         }
 
         [ClientRpc]
         public void RpcOnDayCycleChange(GameController.CycleController.DayCycle dayCycle)
         {
+            if (!isLocalPlayer) { return; }
             switch (dayCycle)
             {
                 case GameController.CycleController.DayCycle.day:
@@ -36,14 +43,45 @@ namespace Player
         }
 
         [ClientRpc]
-        public void RpcOnEventTimeChange(GameController.CycleController.TimeOf timeOf)
+        public void RpcOnEventTimeChange(GameController.CycleController.TimeOf _timeOf)
         {
+            bool canControl;
+            Role.Type roleType = playerController.roleType;
+
+            if (!isLocalPlayer) { return; }
             switch (timeOf)
             {
                 case GameController.CycleController.TimeOf.wait:
                     break;
+                case GameController.CycleController.TimeOf.seeRole:
+                    playerController.setControlToPlayer(true);
+                    break;
+                case GameController.CycleController.TimeOf.metamorphe:
+                    playerController.setControlToPlayer(true);
+                    break;
+                case GameController.CycleController.TimeOf.vote:
+                    break;
                 default:
+                    break;
+            }
+            timeOf = _timeOf;
+            switch (timeOf)
+            {
+                case GameController.CycleController.TimeOf.wait:
+                    break;
+                case GameController.CycleController.TimeOf.seeRole:
+                    announcementPanelController.setTitleAnnoucement("Vous ête un " + playerController.roleType, 10);
                     playerController.setControlToPlayer(false);
+                    break;
+                case GameController.CycleController.TimeOf.metamorphe:
+                    announcementPanelController.setTitleAnnoucement("C'est l'heure des Métamorphes");
+                    canControl = (roleType == Role.Type.metamorphe) ? true : false;
+                    playerController.setControlToPlayer(canControl);
+                    break;
+                case GameController.CycleController.TimeOf.vote:
+                    announcementPanelController.setTitleAnnoucement("C'est parti pour le vote");
+                    break;
+                default:
                     break;
             }
         }
