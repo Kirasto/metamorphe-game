@@ -92,7 +92,7 @@ namespace Player
             switch (roleType)
             {
                 case Role.Type.metamorphe:
-                    GetComponent<Roles.MetamorpheController>().enabled = true;
+                    GetComponent<RolesController.MetamorpheController>().enabled = true;
                     break;
             }
         }

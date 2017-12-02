@@ -61,10 +61,11 @@ namespace Player
 
                     if (roleType == Role.Type.metamorphe)
                     {
-                        GetComponent<Roles.MetamorpheController>().setOnEvent(false);
+                        GetComponent<RolesController.MetamorpheController>().setOnEvent(false);
                     }
                     break;
                 case GameController.CycleController.TimeOf.vote:
+                    GetComponent<RolesController.VillagerController>().setOnEvent(false);
                     break;
                 default:
                     break;
@@ -85,15 +86,26 @@ namespace Player
 
                     if (roleType == Role.Type.metamorphe)
                     {
-                        GetComponent<Roles.MetamorpheController>().setOnEvent(true);
+                        GetComponent<RolesController.MetamorpheController>().setOnEvent(true);
                     }
+                    break;
+                case GameController.CycleController.TimeOf.talk:
+                    announcementPanelController.setTitleAnnoucement("C'est le temps de discuter");
                     break;
                 case GameController.CycleController.TimeOf.vote:
                     announcementPanelController.setTitleAnnoucement("C'est parti pour le vote");
+                    GetComponent<RolesController.VillagerController>().setOnEvent(true);
                     break;
                 default:
                     break;
             }
+        }
+
+        [ClientRpc]
+        public void RpcSetAnnoucement(string annoucement)
+        {
+            if(!isLocalPlayer) { return; }
+            announcementPanelController.setTitleAnnoucement(annoucement);
         }
 
         [ClientRpc]

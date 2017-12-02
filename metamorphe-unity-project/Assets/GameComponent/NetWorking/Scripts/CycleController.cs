@@ -48,32 +48,50 @@ namespace GameController
         public List<int> playersIdDeath;
 
         [Command]
-        public void CmdInitEventsList()
+        public void CmdInit()
         {
             timerController = GetComponent<TimerController>();
             playersController = GetComponent<PlayersController>();
             gameController = GetComponent<GameController>();
 
-            dayCycle = DayCycle.day;
-            timeOf = TimeOf.wait;
-
             playersIdDeath = new List<int>();
 
             events = new List<EventItem>();
+            CmdInitEventsList();
+        }
 
+        [Command]
+        public void CmdInitEventsList()
+        {
+            dayCycle = DayCycle.day;
+            timeOf = TimeOf.wait;
+
+            events.Clear();
             events.Add(new EventItemTimeOf(TimeOf.wait, false));
             events.Add(new EventItemDayCycle(DayCycle.night, true));
             events.Add(new EventItemTimeOf(TimeOf.seeRole, false, 10));
-            events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 60));
+            events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 5));
             events.Add(new EventItemDayCycle(DayCycle.day, true));
             events.Add(new EventItemTimeOf(TimeOf.seeDeaths, true));
             events.Add(new EventItemTimeOf(TimeOf.talk, true, 5));
             events.Add(new EventItemTimeOf(TimeOf.vote, true, 5));
+            events.Add(new EventItemTimeOf(TimeOf.seeDeaths, true));
         }
 
-        private void rotateEvent()
+        [Command]
+        private void CmdRotateEvent()
         {
             bool previousIsDeath = false;
+            if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.metamorphe)
+            {
+                gameController.CmdOnTimerEndForVote();
+                playersController.CmdClearVote();
+            }
+            else if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.vote)
+            {
+                gameController.CmdOnTimerEndForVote();
+                playersController.CmdClearVote();
+            }
             if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath)
             {
                 previousIsDeath = true;
@@ -85,11 +103,6 @@ namespace GameController
                 EventItem tmp = events[0];
                 events.RemoveAt(0);
                 events.Add(tmp);
-            }
-            if (!events[0].isValid)
-            {
-                rotateEvent();
-                return;
             }
             if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeaths)
             {
@@ -103,14 +116,20 @@ namespace GameController
             }
             if (previousIsDeath && events[0].type == EventType.changeTimeOf && !(((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath))
             {
+                Debug.Log("oui");
                 gameController.CmdCheckWin();
+            }
+            if (!events[0].isValid)
+            {
+                CmdRotateEvent();
+                return;
             }
         }
 
         [Command]
         public void CmdNextEvent()
         {
-            rotateEvent();
+            CmdRotateEvent();
             if (events[0].type == EventType.changeDayCycle)
             {
                 EventItemDayCycle eventDayCycle = (EventItemDayCycle)events[0];
@@ -163,13 +182,23 @@ namespace GameController
             }
         }
 
+        [ServerCallback]
+        public void setAnnoucement(string annoucement)
+        {
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject go in gos)
+            {
+                go.GetComponent<Player.CyclePlayerController>().RpcSetAnnoucement(annoucement);
+            }
+        }
+
         //*//   Vote System   //*//
 
         [Command]
         public void CmdPlayersVotesFor(int playerId)
         {
             playersIdDeath.Add(playerId);
-            CmdNextEvent();
         }
         
         //*//   Event Class   //*//

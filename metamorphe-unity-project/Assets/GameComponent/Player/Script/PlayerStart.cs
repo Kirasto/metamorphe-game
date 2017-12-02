@@ -24,7 +24,7 @@ namespace Player
             if (isLocalPlayer && isServer)
             {
                 playersController.CmdInit();
-                cycleController.CmdInitEventsList();
+                cycleController.CmdInit();
                 timerController.CmdInit();
             }
             if (isLocalPlayer)

@@ -529,6 +529,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b8d1b8d21f4b8429371efe6b14dc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnEvent: 0
+  cam: {fileID: 20177634716834916}
+  choiceKey: 323
 --- !u!114 &114696947675059278
 MonoBehaviour:
   m_ObjectHideFlags: 1

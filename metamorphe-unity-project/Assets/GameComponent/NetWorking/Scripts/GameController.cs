@@ -55,14 +55,42 @@ namespace GameController
                 if (voteId != -1)
                 {
                     cycleController.CmdPlayersVotesFor(voteId);
+                    cycleController.CmdNextEvent();
                 }
+            }
+        }
+
+        [Command]
+        public void CmdOnVillagerVoteOnId(int playerId, int voteOnId)
+        {
+            playersController.CmdPlayerVote(playerId, voteOnId);
+            GameObject[] gos;
+            gos = GameObject.FindGameObjectsWithTag("Player");
+            string playerName = "";
+            string voteName = "";
+
+            foreach (GameObject go in gos)
+            {
+                if (go.GetComponent<Player.Player>().id == playerId)
+                {
+                    playerName = go.GetComponent<Player.Player>().playerName;
+                }
+                else if (go.GetComponent<Player.Player>().id == voteOnId)
+                {
+                    voteName = go.GetComponent<Player.Player>().playerName;
+                }
+            }
+            foreach (GameObject go in gos)
+            {
+                go.GetComponent<Player.ChatPlayerManager>().RpcRecieveMessageFromServer("[Vote] " + playerName + " as vote for: " + voteName);
             }
         }
 
         [Command]
         public void CmdOnTimerEndForVote()
         {
-            int voteId = playersController.getVoteId(Role.Type.metamorphe);
+            int voteId = playersController.getVoteId();
+            Debug.Log(voteId);
             if (voteId != -1)
             {
                 cycleController.CmdPlayersVotesFor(voteId);
@@ -74,7 +102,43 @@ namespace GameController
         [Command]
         public void CmdCheckWin()
         {
-            Debug.Log("Game: On check win");
+            int metaCount = 0;
+            int villCount = 0;
+
+            foreach (Player.PlayerInfo p in playersController.getPlayersInfo())
+            {
+                Debug.Log("playerinfo");
+                if (!p.isDead)
+                {
+                    switch (p.role)
+                    {
+                        case Role.Type.metamorphe:
+                            metaCount++;
+                            break;
+                        default:
+                            villCount++;
+                            break;
+                    }
+                }
+            }
+            Debug.Log("metaCount: " + metaCount);
+            Debug.Log("villCount: " + villCount);
+            if (metaCount == 0 && villCount > 0)
+            {
+                cycleController.setAnnoucement("Les villagoies on gagné");
+                resetGame();
+            }
+            else if (villCount == 0 && metaCount > 0)
+            {
+                cycleController.setAnnoucement("Les métamorphes on gagné");
+                resetGame();
+            }
+        }
+
+        [ServerCallback]
+        public void resetGame()
+        {
+            cycleController.CmdInitEventsList();
         }
     }
 }

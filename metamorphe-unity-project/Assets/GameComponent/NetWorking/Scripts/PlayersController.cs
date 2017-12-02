@@ -39,6 +39,12 @@ namespace GameController
             NextId = 0;
         }
 
+        [ServerCallback]
+        public List<Player.PlayerInfo> getPlayersInfo()
+        {
+            return playersInfo;
+        }
+
         public void Update()
         {
             if (isServer)
@@ -178,8 +184,8 @@ namespace GameController
                 switch (role)
                 {
                     case Role.Type.metamorphe:
-                        go.GetComponent<Player.Roles.MetamorpheController>().enabled = true;
-                        go.GetComponent<Player.Roles.MetamorpheController>().setGameController(GetComponent<GameController>());
+                        go.GetComponent<Player.RolesController.MetamorpheController>().enabled = true;
+                        go.GetComponent<Player.RolesController.MetamorpheController>().setGameController(GetComponent<GameController>());
                         break;
                 }
                 go.GetComponent<Player.ChatPlayerManager>().RpcRecieveMessageFromServer((role == Role.Type.metamorphe)?("Tu es un Métamorphe"):("Tu es un Villagoie"));
@@ -286,7 +292,7 @@ namespace GameController
             Dictionary<int, int> votesOnId = new Dictionary<int, int>();
             while (index < playersInfo.Count)
             {
-                if (!playersInfo[index].isDead && !playersInfo[index].asVote)
+                if (!playersInfo[index].isDead && playersInfo[index].asVote)
                 {
                     if (!votesOnId.ContainsKey(playersInfo[index].voteOnId))
                     {
@@ -312,6 +318,7 @@ namespace GameController
                     maxVotesOnId = onId;
                 }
             }
+            Debug.Log(isEnter);
             if (isEnter)
             {
                 return maxVotesOnId.Key;
@@ -324,6 +331,7 @@ namespace GameController
         [Command]
         public void CmdGiveDeathTo(int id)
         {
+            setIsDeadTo(id, true);
             GameObject[] gos;
             gos = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject go in gos)
