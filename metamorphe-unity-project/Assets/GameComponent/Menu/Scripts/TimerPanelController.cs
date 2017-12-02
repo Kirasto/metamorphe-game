@@ -11,6 +11,7 @@ namespace Menu
             float timer;
             bool isTimerOn;
 
+            public GameObject timerTextPanel;
             public TMPro.TMP_Text timerText;
 
             private void Start()
@@ -22,6 +23,7 @@ namespace Menu
             {
                 isTimerOn = true;
                 timer = (float)sec;
+                timerTextPanel.SetActive(true);
             }
 
             // Update is called once per frame
@@ -48,6 +50,7 @@ namespace Menu
                     {
                         timer = (float)0;
                         isTimerOn = false;
+                        timerTextPanel.SetActive(false);
                     }
                 }
             }
