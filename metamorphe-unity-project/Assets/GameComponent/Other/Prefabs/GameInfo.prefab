@@ -378,14 +378,13 @@ GameObject:
   - component: {fileID: 224469305007375990}
   - component: {fileID: 222385566482744212}
   - component: {fileID: 114078559041999322}
-  - component: {fileID: 114203328337031410}
   m_Layer: 5
-  m_Name: TimerPanel
+  m_Name: TimerTextPanel
   m_TagString: TimerPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1435910177300950
 GameObject:
   m_ObjectHideFlags: 1
@@ -776,7 +775,6 @@ GameObject:
   m_Component:
   - component: {fileID: 224954104583976620}
   - component: {fileID: 222460427622646132}
-  - component: {fileID: 114338978350551814}
   - component: {fileID: 114780774610702680}
   m_Layer: 5
   m_Name: TimerPanel
@@ -1840,18 +1838,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114203328337031410
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1397787193251500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64e5a4e3d79b0454ca751f8692a35939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 114952053687628094}
 --- !u!114 &114212728522974172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2400,33 +2386,6 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
---- !u!114 &114338978350551814
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1923514187562954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8b3604fade2344445a1030a378230019, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114347037027660308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4005,7 +3964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e5a4e3d79b0454ca751f8692a35939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
+  timerTextPanel: {fileID: 1397787193251500}
+  timerText: {fileID: 114952053687628094}
 --- !u!114 &114797360964256736
 MonoBehaviour:
   m_ObjectHideFlags: 1
