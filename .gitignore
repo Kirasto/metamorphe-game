@@ -37,3 +37,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+metamorphe-unity-project/Assets/LowPolyLandscape/Maps/*
+metamorphe-unity-project/Assets/_Creepy_Cat/_3D\ Medieval\ House\ Village\ Cartoon\ Kit/Prefabs.unity

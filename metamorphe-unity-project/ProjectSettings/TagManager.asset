@@ -11,6 +11,8 @@ TagManager:
   - TimerPanel
   - AnnouncementPanel
   - EffectPanel
+  - House
+  - BedPoint
   layers:
   - Default
   - TransparentFX
