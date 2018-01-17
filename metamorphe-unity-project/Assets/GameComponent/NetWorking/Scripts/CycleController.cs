@@ -69,7 +69,7 @@ namespace GameController
             events.Clear();
             events.Add(new EventItemTimeOf(TimeOf.wait, false));
             events.Add(new EventItemDayCycle(DayCycle.night, true));
-            events.Add(new EventItemTimeOf(TimeOf.seeRole, false, 10));
+            events.Add(new EventItemTimeOf(TimeOf.seeRole, false, 20));
             events.Add(new EventItemTimeOf(TimeOf.metamorphe, true, 5));
             events.Add(new EventItemDayCycle(DayCycle.day, true));
             events.Add(new EventItemTimeOf(TimeOf.seeDeaths, true));
