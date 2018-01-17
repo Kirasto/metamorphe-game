@@ -72,15 +72,18 @@ namespace Menu
 
         public void HostServer()
         {
-            Debug.Log("Host game on port: " + manager.networkPort);
             checkPlayerName();
-            manager.networkPort = 7777;
+            manager.networkPort = (portInputField.text.Length > 0) ? int.Parse(portInputField.text) : 7777;
+            Debug.Log("Host game (Port: " + manager.networkPort + ")");
             manager.StartHost();
         }
 
         public void JoinGame()
         {
-            manager.networkPort = 7777;
+            checkPlayerName();
+            manager.networkPort = (portInputField.text.Length > 0) ? int.Parse(portInputField.text) : 7777;
+            manager.networkAddress = (ipInputField.text.Length > 0) ? ipInputField.text : "127.0.0.1";
+            Debug.Log("Host game (Ip: " + manager.networkAddress + ", Port: " + manager.networkPort + ")");
             manager.StartClient();
         }
 
