@@ -90,7 +90,6 @@ namespace GameController
         public void CmdOnTimerEndForVote()
         {
             int voteId = playersController.getVoteId();
-            Debug.Log(voteId);
             if (voteId != -1)
             {
                 cycleController.CmdPlayersVotesFor(voteId);

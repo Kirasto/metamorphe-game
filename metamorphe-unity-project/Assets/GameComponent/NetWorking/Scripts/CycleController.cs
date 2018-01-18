@@ -9,18 +9,18 @@ namespace GameController
     {
         //*//   Enum   //*//
 
-        public enum EventType
+        public enum         EventType
         {
             changeDayCycle,
             changeTimeOf
         }
 
-        public enum DayCycle
+        public enum         DayCycle
         {
             day,
             night
         }
-        public enum TimeOf
+        public enum         TimeOf
         {
             talk,
             vote,
@@ -34,34 +34,51 @@ namespace GameController
         //*//   SyncVar   //*//
 
         [SyncVar]
-        public DayCycle dayCycle;
+        public DayCycle     dayCycle;
         [SyncVar]
-        public TimeOf timeOf;
+        public TimeOf       timeOf;
 
         //*//   List of event   //*//
 
-        List<EventItem> events;
-        TimerController timerController;
-        PlayersController playersController;
-        GameController gameController;
+        List<EventItem>     events;
 
-        public List<int> playersIdDeath;
+        //*//   Object Reference    //*//
+
+        TimerController     timerController;
+        PlayersController   playersController;
+        GameController      gameController;
+
+        //*//   List of Death   //*//
+
+        public List<int>    playersIdDeath;
+
+        //*//   Variable    //*//
+
+        private bool        isVoteEnd;
+        public bool         showEventChange = false;
 
         [Command]
-        public void CmdInit()
+        public void         CmdInit()
         {
+            // Set Object Reference
             timerController = GetComponent<TimerController>();
             playersController = GetComponent<PlayersController>();
             gameController = GetComponent<GameController>();
 
+            // Create List of Death
             playersIdDeath = new List<int>();
 
+            // Create List of Event
             events = new List<EventItem>();
             CmdInitEventsList();
+
+            // Set Variable
+            isVoteEnd = false;
         }
 
+        // Init Event List
         [Command]
-        public void CmdInitEventsList()
+        public void         CmdInitEventsList()
         {
             dayCycle = DayCycle.day;
             timeOf = TimeOf.wait;
@@ -78,20 +95,27 @@ namespace GameController
             events.Add(new EventItemTimeOf(TimeOf.seeDeaths, true));
         }
 
+        // Rotate Event List
         [Command]
-        private void CmdRotateEvent()
+        private void        CmdRotateEvent()
         {
             bool previousIsDeath = false;
+
+            // Check Event TimeOf
             if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.metamorphe)
             {
                 gameController.CmdOnTimerEndForVote();
                 playersController.CmdClearVote();
             }
-            else if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.vote)
+            else if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.vote && !isVoteEnd)
             {
                 gameController.CmdOnTimerEndForVote();
-                playersController.CmdClearVote();
             }
+
+            playersController.CmdClearVote();
+            isVoteEnd = false;
+
+            // Rotate List Of Event
             if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath)
             {
                 previousIsDeath = true;
@@ -104,9 +128,20 @@ namespace GameController
                 events.RemoveAt(0);
                 events.Add(tmp);
             }
+
+            // Show Change Of Event
+            if (events[0].type == EventType.changeDayCycle && showEventChange)
+            {
+                Debug.Log("[DayCycle]: Change to '" + ((EventItemDayCycle)(events[0])).dayCycle.ToString() + "'");
+            }
+            else if (events[0].type == EventType.changeTimeOf && showEventChange)
+            {
+                Debug.Log("[TimeOf]: Change to '" + ((EventItemTimeOf)(events[0])).timeOf.ToString() + "'");
+            }
+
+            // Set Events Of SeeDeath
             if (events[0].type == EventType.changeTimeOf && ((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeaths)
             {
-                Debug.Log("see Deaths event");
                 events.RemoveAt(0);
                 foreach (int i in playersIdDeath)
                 {
@@ -114,11 +149,14 @@ namespace GameController
                     events.Insert(0, new EventItemTimeOf(TimeOf.seeDeath, true, 3));
                 }
             }
+
+            // Check If End Of Game
             if (previousIsDeath && events[0].type == EventType.changeTimeOf && !(((EventItemTimeOf)(events[0])).timeOf == TimeOf.seeDeath))
             {
-                Debug.Log("oui");
                 gameController.CmdCheckWin();
             }
+
+            // Rotate List If Event Is InValid
             if (!events[0].isValid)
             {
                 CmdRotateEvent();
@@ -126,8 +164,9 @@ namespace GameController
             }
         }
 
+        // Go To Next Event
         [Command]
-        public void CmdNextEvent()
+        public void         CmdNextEvent()
         {
             CmdRotateEvent();
             if (events[0].type == EventType.changeDayCycle)
@@ -142,9 +181,10 @@ namespace GameController
                 CmdChangeEventTime(_eventTimeOf.timeOf, _eventTimeOf.asTimer, _eventTimeOf.timer);
             }
         }
-
+        
+        // Send Change Of DayCycle
         [Command]
-        public void CmdChangeDayCycle(DayCycle _dayCycle)
+        public void         CmdChangeDayCycle(DayCycle _dayCycle)
         {
             dayCycle = _dayCycle;   
             GameObject[] gos;
@@ -155,8 +195,9 @@ namespace GameController
             }
         }
 
+        // Send Change Of TimeOf
         [Command]
-        public void CmdChangeEventTime(TimeOf _timeOf, bool asTimer, int timer)
+        public void         CmdChangeEventTime(TimeOf _timeOf, bool asTimer, int timer)
         {
             timeOf = _timeOf;
             GameObject[] gos;
@@ -182,8 +223,9 @@ namespace GameController
             }
         }
 
+        // Send Annoucement
         [ServerCallback]
-        public void setAnnoucement(string annoucement)
+        public void         setAnnoucement(string annoucement)
         {
             GameObject[] gos;
             gos = GameObject.FindGameObjectsWithTag("Player");
@@ -193,24 +235,33 @@ namespace GameController
             }
         }
 
+        //*//
         //*//   Vote System   //*//
+        //*//
 
         [Command]
-        public void CmdPlayersVotesFor(int playerId)
+        public void         CmdPlayersVotesFor(int playerId)
         {
+            isVoteEnd = true;
             playersIdDeath.Add(playerId);
         }
-        
-        //*//   Event Class   //*//
 
-        public class EventItem
+        //*//
+        //*//   Vote System [END]   //*//
+        //*//
+
+        //*//
+        //*//   Event Class   //*//
+        //*//
+
+        public class        EventItem
         {
             public EventType type;
             public bool isRepeat;
             public bool isValid;
         }
 
-        public class EventItemDayCycle : EventItem
+        public class        EventItemDayCycle : EventItem
         {
             private DayCycle pDayCycle;
             public DayCycle dayCycle { get { return pDayCycle; } }
@@ -225,7 +276,7 @@ namespace GameController
             }
         }
 
-        public class EventItemTimeOf : EventItem
+        public class        EventItemTimeOf : EventItem
         {
             private TimeOf pTimeOf;
             public TimeOf timeOf { get { return pTimeOf; } }
@@ -254,6 +305,10 @@ namespace GameController
                 }
             }
         }
+
+        //*//
+        //*//   Event Class [END]   //*//
+        //*//
 
     }
 }
